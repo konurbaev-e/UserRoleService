@@ -1,23 +1,55 @@
 package org.konurbaev.userrole.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+import javax.jws.soap.SOAPBinding;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class User {
     @Id
     @GeneratedValue
-    private Long id;
+    private Long user_id;
 
-    public String username;
+    @Column(unique=true)
+    private String username;
 
-    public Long getId() {
-        return id;
+    @ManyToMany
+    @JoinTable(name = "userrole", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+//    @JsonManagedReference
+    @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@userId")
+    private List<Role> userrole = new ArrayList<>();
+
+    public User (){
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public User (String username){
+        this.username = username;
+    }
+
+    public User (String username, List<Role> userrole){
+        this.username = username;
+        this.userrole = userrole;
+    }
+
+    public Long getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(Long user_id) {
+        this.user_id = user_id;
+    }
+
+    public List<Role> getUserrole() {
+        return userrole;
+    }
+
+    public void setUserrole(List<Role> userrole) {
+        this.userrole = userrole;
     }
 
     public String getUsername() {
@@ -27,4 +59,9 @@ public class User {
     public void setUsername(String username) {
         this.username = username;
     }
+
+    public void addRole (Role role) {
+        userrole.add(role);
+    }
+
 }
