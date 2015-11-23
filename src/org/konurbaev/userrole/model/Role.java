@@ -11,7 +11,7 @@ public class Role {
     private Long role_id;
 
     @Column(unique=true)
-    public String rolename;
+    private String rolename;
 
     @ManyToMany(mappedBy = "userrole")
 //    @JsonBackReference

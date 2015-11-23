@@ -1,7 +1,6 @@
 package org.konurbaev.userrole;
 
 
-import org.h2.server.web.WebServlet;
 import org.konurbaev.userrole.model.Role;
 import org.konurbaev.userrole.model.RoleRepository;
 import org.konurbaev.userrole.model.User;
@@ -9,7 +8,6 @@ import org.konurbaev.userrole.model.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.context.embedded.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -20,15 +18,7 @@ import java.util.List;
 @Configuration
 @ComponentScan
 @EnableAutoConfiguration
-public class App {
-
-    @Bean
-    public ServletRegistrationBean h2servletRegistration() {
-        ServletRegistrationBean registration = new ServletRegistrationBean(new WebServlet());
-        registration.addUrlMappings("/console/*");
-        registration.addInitParameter("webAllowOthers", "true");
-        return registration;
-    }
+class App {
 
     @Bean
     CommandLineRunner init(UserRepository userRepository, RoleRepository roleRepository) {

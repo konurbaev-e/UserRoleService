@@ -1,7 +1,6 @@
 package org.konurbaev.userrole;
 
 import org.konurbaev.userrole.model.Role;
-import org.konurbaev.userrole.model.RoleRepository;
 import org.konurbaev.userrole.model.User;
 import org.konurbaev.userrole.model.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +17,6 @@ import java.util.Optional;
 @RequestMapping("user")
 public class UserController {
 
-    @Autowired
-    RoleRepository roleRepository;
     @Autowired
     UserRepository userRepository;
 
