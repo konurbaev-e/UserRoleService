@@ -1,9 +1,6 @@
 package org.konurbaev.userrole.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.util.List;
 
@@ -18,7 +15,8 @@ public class Role {
 
     @ManyToMany(mappedBy = "userrole")
 //    @JsonBackReference
-    @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@roleId")
+//    @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@roleId")
+    @JsonIgnore
     private List<User> userrole;
 
     public Role (){

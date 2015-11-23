@@ -1,10 +1,6 @@
 package org.konurbaev.userrole.model;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
-import javax.jws.soap.SOAPBinding;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +17,8 @@ public class User {
     @ManyToMany
     @JoinTable(name = "userrole", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 //    @JsonManagedReference
-    @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@userId")
+//    @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@userId")
+    @JsonIgnore
     private List<Role> userrole = new ArrayList<>();
 
     public User (){
@@ -62,6 +59,10 @@ public class User {
 
     public void addRole (Role role) {
         userrole.add(role);
+    }
+
+    public void addRoles (List<Role> roleList) {
+        this.userrole.addAll(roleList);
     }
 
 }
