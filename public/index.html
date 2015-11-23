@@ -1,0 +1,17 @@
+<!doctype html>
+<html ng-app="myapp">
+	<head>
+		<title>UserRoles Application</title>
+		<script src="https://code.angularjs.org/1.4.2/angular.js"></script>
+		<script src="https://code.angularjs.org/1.4.2/angular-resource.js"></script>
+		<script src="roles.js"></script>
+	</head>
+
+	<body ng-controller="UserRolesController">
+		Username: <input ng-model="username"> <button ng-click="update()" ng-enter="update()">show user roles</button>
+		<div ng-repeat="role in roles" style="background-color:#EEE;padding:5px;width:300px;border:1px solid black;margin:10px;'">
+			<p>The role_id = {{role.role_id}}</p>
+			<p>The rolename is {{role.rolename}}</p>
+		</div>
+	</body>
+</html>
