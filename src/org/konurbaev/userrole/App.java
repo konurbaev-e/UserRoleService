@@ -38,7 +38,6 @@ class App {
             roleRepository.save(role);
             role = new Role("My Role 4");
             roleRepository.save(role);
-
         };
     }
 
