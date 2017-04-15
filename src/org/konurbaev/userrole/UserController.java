@@ -18,7 +18,7 @@ import java.util.Optional;
 public class UserController {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     //get main attributes of user
     @RequestMapping("{username}")
